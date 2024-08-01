@@ -56,7 +56,7 @@ const Clock = () => {
         <span className="text-neutral-400">:</span>
         <span className="font-bold">{formatedTime.minutes}</span>
         <span className="text-neutral-400">:</span>
-        <span className="inline-block text-neutral-400 font-bold w-[200px]">
+        <span className="inline-block text-neutral-400 font-bold w-[12vw]">
           {formatedTime.seconds}
         </span>
       </p>
