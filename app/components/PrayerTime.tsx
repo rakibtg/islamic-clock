@@ -22,7 +22,7 @@ const PrayerTimeComponent: React.FC = () => {
     // Function to fetch prayer times
     const fetchPrayerTimes = async () => {
       try {
-        const response = await fetch("http://localhost:4040/prayertime");
+        const response = await fetch("/prayertime");
 
         // Check if the response is okay
         if (!response.ok) {
