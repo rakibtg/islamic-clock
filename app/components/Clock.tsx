@@ -51,12 +51,12 @@ const Clock = () => {
 
   return (
     <div className="flex flex-col items-center ml-[4vw]">
-      <p className="text-[10.5vw]">
-        <span className="">{formatedTime.hours}</span>
+      <p className="text-[10vw]">
+        <span className="font-bold">{formatedTime.hours}</span>
         <span className="text-neutral-400">:</span>
-        <span className="">{formatedTime.minutes}</span>
+        <span className="font-bold">{formatedTime.minutes}</span>
         <span className="text-neutral-400">:</span>
-        <span className="inline-block text-neutral-400 w-[220px]">
+        <span className="inline-block text-neutral-400 font-bold w-[200px]">
           {formatedTime.seconds}
         </span>
       </p>
