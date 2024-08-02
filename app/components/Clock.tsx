@@ -39,7 +39,16 @@ const Clock = () => {
       .toLocaleDateString(undefined, options)
       .split(" ");
 
-    return { weekDay, day, monthName, year };
+    const weekDayWithoutComma = weekDay.trim().endsWith(",")
+      ? weekDay.slice(0, -1)
+      : weekDay;
+
+    return {
+      weekDay: weekDayWithoutComma,
+      day: day.trim(),
+      monthName: monthName.trim(),
+      year: year.trim(),
+    };
   };
 
   if (!time) {
