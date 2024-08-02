@@ -114,65 +114,15 @@ async function fetchPrayerTimes(): Promise<Response> {
   }
 }
 
-interface PrayerTime {
-  name: string;
-  time: string;
-  active?: boolean;
-}
-
-function addActiveStatus(prayerTimes: PrayerTime[]): PrayerTime[] {
-  const currentTime = new Date();
-  const currentHours = currentTime.getHours();
-  const currentMinutes = currentTime.getMinutes();
-
-  // Convert current time to minutes since midnight
-  const currentTotalMinutes = currentHours * 60 + currentMinutes;
-
-  // Map through the prayer times to determine active status
-  return prayerTimes.map((prayer, index) => {
-    // Split prayer time into hours and minutes
-    const [prayerHours, prayerMinutes] = prayer.time.split(":").map(Number);
-
-    // Calculate total minutes since midnight for this prayer time
-    const prayerTotalMinutes = prayerHours * 60 + prayerMinutes;
-
-    // Calculate the total minutes for the next prayer time
-    let nextPrayerTotalMinutes;
-    if (index < prayerTimes.length - 1) {
-      const [nextPrayerHours, nextPrayerMinutes] = prayerTimes[index + 1].time
-        .split(":")
-        .map(Number);
-      nextPrayerTotalMinutes = nextPrayerHours * 60 + nextPrayerMinutes;
-    } else {
-      // If it's the last prayer, assume next prayer time is next day's Fajr
-      const [firstPrayerHours, firstPrayerMinutes] = prayerTimes[0].time
-        .split(":")
-        .map(Number);
-      nextPrayerTotalMinutes =
-        firstPrayerHours * 60 + firstPrayerMinutes + 24 * 60; // Add 24 hours
-    }
-
-    // Determine if the current time is within the range of this prayer
-    const isActive =
-      currentTotalMinutes >= prayerTotalMinutes &&
-      currentTotalMinutes < nextPrayerTotalMinutes;
-
-    // Return a new object with the active status
-    return {
-      ...prayer,
-      active: isActive,
-    };
-  });
-}
-
 export async function GET(req: Request) {
   let times = [];
   try {
     const res = await fetchPrayerTimes();
     const rawData = await res.text();
     const prayerTimeArray = extractPrayerTimes(rawData);
-    const withActiveStatus = addActiveStatus(prayerTimeArray);
-    times = withActiveStatus;
+    times = prayerTimeArray;
+    // const withActiveStatus = addActiveStatus(prayerTimeArray);
+    // times = withActiveStatus;
   } catch (error) {
     return NextResponse.json({ success: false, times: [] });
   }

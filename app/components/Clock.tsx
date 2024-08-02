@@ -50,17 +50,17 @@ const Clock = () => {
   const formatedDate = formatDate(time);
 
   return (
-    <div className="flex flex-col items-center ml-[4vw]">
-      <p className="text-[10vw]">
+    <div className="">
+      <p className="text-[14.5vw] text-center">
         <span className="font-bold">{formatedTime.hours}</span>
         <span className="text-neutral-400">:</span>
         <span className="font-bold">{formatedTime.minutes}</span>
         <span className="text-neutral-400">:</span>
-        <span className="inline-block text-neutral-400 font-bold w-[12vw]">
+        <span className="inline-block text-neutral-400 font-bold w-[18vw]">
           {formatedTime.seconds}
         </span>
       </p>
-      <p className="text-[4.5vw] font-bold">
+      <p className="text-[5.5vw] font-bold text-center">
         {formatedDate.weekDay}, {formatedDate.day} {formatedDate.monthName}
       </p>
     </div>

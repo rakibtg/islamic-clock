@@ -4,10 +4,10 @@ import PrayerTimeComponent from "./components/PrayerTime";
 export default function Home() {
   return (
     <main className="flex min-h-screen">
-      <div className="flex-1 h-screen flex items-center justify-center ">
+      <div className="h-screen flex items-center justify-center w-[66vw]">
         <Clock />
       </div>
-      <div className="flex-1 h-screen flex items-center justify-center ">
+      <div className="h-screen flex items-center justify-center w-[34vw]">
         <PrayerTimeComponent />
       </div>
     </main>
